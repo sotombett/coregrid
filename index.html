@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COREGRID — Интернет-магазин компьютерной техники</title>
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Пользовательские стили -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Навигационная панель -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand brand-logo fs-4" href="#">CORE<span>GRID</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+              aria-controls="mainNavbar" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-lg-2">
+          <li class="nav-item"><a class="nav-link active" href="#catalog">Каталог</a></li>
+          <li class="nav-item"><a class="nav-link" href="#advantages">Преимущества</a></li>
+          <li class="nav-item"><a class="nav-link" href="#support">Консультация</a></li>
+        </ul>
+
+        <form class="d-flex me-lg-3 mb-2 mb-lg-0" role="search" id="searchForm">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text bg-transparent border-secondary-subtle text-secondary">
+              <i class="bi bi-search"></i>
+            </span>
+            <input id="searchInput" class="form-control" type="search" placeholder="Поиск комплектующих..."
+                   aria-label="Поиск комплектующих">
+          </div>
+        </form>
+
+        <button class="btn btn-accent position-relative" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+          <i class="bi bi-bag me-2"></i>Корзина
+          <span id="cartCountBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark">
+            0
+          </span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Первый экран (Hero) -->
+  <header class="hero-section py-5">
+    <div class="container py-lg-4">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <span class="badge badge-accent rounded-pill px-3 py-2 mb-3">Официальная гарантия до 36 месяцев</span>
+          <h1 class="display-5 fw-bold mb-3">Комплектующие для рабочих станций и игровых систем</h1>
+          <p class="lead text-muted-custom mb-4">
+            Подбирайте видеокарты, процессоры, оперативную память и накопители с проверкой совместимости и быстрой доставкой по всей стране.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#catalog" class="btn btn-accent btn-lg px-4">Перейти в каталог</a>
+            <a href="#support" class="btn btn-outline-accent btn-lg px-4">Подобрать сборку</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="surface-panel p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-uppercase small text-muted-custom fw-semibold">Спецпредложение недели</span>
+              <span class="badge text-bg-light">Промокод TECH10</span>
+            </div>
+            <h2 class="h4 fw-bold mb-2">Скидка 10% на первый заказ</h2>
+            <p class="text-muted-custom small mb-4">
+              Активируйте промокод <strong class="text-white">TECH10</strong> в корзине, чтобы получить скидку на любые комплектующие из каталога.
+            </p>
+            <div class="row g-3 text-center">
+              <div class="col-4">
+                <div class="p-2 rounded border border-secondary-subtle">
+                  <div class="fw-bold fs-5">1 400+</div>
+                  <div class="small text-muted-custom">позиций</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-2 rounded border border-secondary-subtle">
+                  <div class="fw-bold fs-5">24 ч</div>
+                  <div class="small text-muted-custom">отгрузка</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-2 rounded border border-secondary-subtle">
+                  <div class="fw-bold fs-5">3 года</div>
+                  <div class="small text-muted-custom">гарантия</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Каталог товаров -->
+  <main class="py-5" id="catalog">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+        <div>
+          <h2 class="fw-bold mb-1">Каталог комплектующих</h2>
+          <p class="text-muted-custom mb-0">Актуальное наличие на складе и проверенные характеристики</p>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <label for="sortSelect" class="small text-muted-custom text-nowrap">Сортировка:</label>
+          <select id="sortSelect" class="form-select form-select-sm sort-select">
+            <option value="default">По популярности</option>
+            <option value="price-asc">Сначала дешевле</option>
+            <option value="price-desc">Сначала дороже</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Фильтры категорий -->
+      <div class="d-flex flex-wrap gap-2 mb-4" id="categoryFilters" role="group" aria-label="Фильтр по категориям">
+        <button type="button" class="btn btn-sm btn-outline-accent active" data-category="all">Все товары</button>
+        <button type="button" class="btn btn-sm btn-outline-accent" data-category="gpu">Видеокарты</button>
+        <button type="button" class="btn btn-sm btn-outline-accent" data-category="cpu">Процессоры</button>
+        <button type="button" class="btn btn-sm btn-outline-accent" data-category="mb">Материнские платы</button>
+        <button type="button" class="btn btn-sm btn-outline-accent" data-category="ram">Оперативная память</button>
+        <button type="button" class="btn btn-sm btn-outline-accent" data-category="storage">SSD-накопители</button>
+        <button type="button" class="btn btn-sm btn-outline-accent" data-category="psu">Блоки питания</button>
+      </div>
+
+      <!-- Сетка товаров -->
+      <div id="productGrid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>
+
+      <!-- Пустой результат поиска -->
+      <div id="emptyState" class="surface-panel text-center p-5 d-none">
+        <i class="bi bi-cpu fs-1 text-secondary mb-3 d-block"></i>
+        <h3 class="h5 fw-bold">Товары не найдены</h3>
+        <p class="text-muted-custom mb-3">Попробуйте изменить поисковый запрос или сбросить фильтр категорий.</p>
+        <button type="button" class="btn btn-outline-accent btn-sm" id="resetFiltersBtn">Сбросить фильтры</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Преимущества -->
+  <section class="py-5 section-bordered" id="advantages">
+    <div class="container">
+      <h2 class="fw-bold mb-4">Почему выбирают COREGRID</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+        <div class="col">
+          <div class="surface-panel p-4 h-100">
+            <div class="feature-icon mb-3"><i class="bi bi-shield-check"></i></div>
+            <h3 class="h5 fw-semibold">Оригинальные поставки</h3>
+            <p class="text-muted-custom small mb-0">Серийные номера проверяются перед отправкой, предоставляется официальный гарантийный талон.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="surface-panel p-4 h-100">
+            <div class="feature-icon mb-3"><i class="bi bi-tools"></i></div>
+            <h3 class="h5 fw-semibold">Тестирование сборки</h3>
+            <p class="text-muted-custom small mb-0">При заказе комплекта инженеры проводят стресс-тест и обновление BIOS материнской платы.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="surface-panel p-4 h-100">
+            <div class="feature-icon mb-3"><i class="bi bi-truck"></i></div>
+            <h3 class="h5 fw-semibold">Быстрая доставка</h3>
+            <p class="text-muted-custom small mb-0">Курьерская доставка в ударопрочной упаковке или самовывоз из пунктов выдачи.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="surface-panel p-4 h-100">
+            <div class="feature-icon mb-3"><i class="bi bi-headset"></i></div>
+            <h3 class="h5 fw-semibold">Техподдержка</h3>
+            <p class="text-muted-custom small mb-0">Помогаем проверить совместимость сокетов, форм-факторов и мощности блока питания.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма консультации -->
+  <section class="py-5" id="support">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="surface-panel p-4 p-md-5">
+            <h2 class="fw-bold mb-2">Нужна помощь с подбором комплектующих?</h2>
+            <p class="text-muted-custom mb-4">Оставьте заявку — инженер проверит совместимость конфигурации и ответит на почту.</p>
+
+            <form id="supportForm" class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="supportName" class="form-label">Ваше имя</label>
+                  <input type="text" class="form-control" id="supportName" required minlength="2" placeholder="Алексей">
+                  <div class="invalid-feedback">Введите имя (минимум 2 символа).</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="supportEmail" class="form-label">Электронная почта</label>
+                  <input type="email" class="form-control" id="supportEmail" required placeholder="name@example.com">
+                  <div class="invalid-feedback">Введите корректный email.</div>
+                </div>
+                <div class="col-12">
+                  <label for="supportMessage" class="form-label">Бюджет и задачи системы</label>
+                  <textarea class="form-control" id="supportMessage" rows="3" required minlength="10"
+                            placeholder="Например: сборка для 3D-рендеринга и игр в 1440p, бюджет 150 000 ₽"></textarea>
+                  <div class="invalid-feedback">Опишите задачу (минимум 10 символов).</div>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-between flex-wrap gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="supportAgree" required>
+                    <label class="form-check-label small text-muted-custom" for="supportAgree">
+                      Согласен на обработку контактных данных
+                    </label>
+                    <div class="invalid-feedback">Необходимо согласие для отправки заявки.</div>
+                  </div>
+                  <button type="submit" class="btn btn-accent px-4">Отправить заявку</button>
+                </div>
+              </div>
+            </form>
+            <div id="supportSuccess" class="alert alert-success mt-4 mb-0 d-none" role="alert">
+              Заявка принята. Специалист свяжется с вами в течение рабочего дня.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал -->
+  <footer class="py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div>
+        <span class="brand-logo">CORE<span>GRID</span></span>
+        <span class="text-muted-custom small ms-2">&copy; 2026 Все права защищены</span>
+      </div>
+      <div class="d-flex gap-4 small text-muted-custom">
+        <span><i class="bi bi-telephone me-1"></i>8 (800) 555-01-94</span>
+        <span><i class="bi bi-envelope me-1"></i>support@coregrid.ru</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Модальное окно характеристик товара -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-secondary-subtle">
+          <h3 class="modal-title fs-5 fw-bold" id="productModalLabel">Характеристики</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body" id="productModalBody"></div>
+        <div class="modal-footer border-secondary-subtle">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <button type="button" class="btn btn-accent" id="modalAddBtn">Добавить в корзину</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Выдвижная панель корзины (Offcanvas) -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas-header border-bottom border-secondary-subtle">
+      <h3 class="offcanvas-title fs-5 fw-bold" id="cartOffcanvasLabel">Корзина</h3>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cartItemsContainer" class="flex-grow-1"></div>
+
+      <!-- Промокод и итог -->
+      <div class="border-top border-secondary-subtle pt-3 mt-3">
+        <div class="input-group input-group-sm mb-2">
+          <input type="text" id="promoInput" class="form-control" placeholder="Промокод (TECH10)">
+          <button class="btn btn-outline-accent" type="button" id="applyPromoBtn">Применить</button>
+        </div>
+        <div id="promoMessage" class="small mb-3"></div>
+
+        <div class="d-flex justify-content-between mb-1 small text-muted-custom">
+          <span>Сумма:</span>
+          <span id="cartSubtotal">0 ₽</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2 small text-muted-custom">
+          <span>Скидка:</span>
+          <span id="cartDiscount">0 ₽</span>
+        </div>
+        <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+          <span>Итого:</span>
+          <span id="cartTotal">0 ₽</span>
+        </div>
+
+        <button id="checkoutBtn" type="button" class="btn btn-accent w-100" disabled>Оформить заказ</button>
+        <div id="checkoutSuccess" class="alert alert-success small mt-3 mb-0 d-none" role="alert">
+          Заказ успешно оформлен. Номер заказа отправлен в обработку.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast уведомление -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="cartToast" class="toast align-items-center text-bg-dark border border-secondary-subtle" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMessage">Товар добавлен в корзину</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Пользовательский скрипт -->
+  <script src="script.js"></script>
+</body>
+</html>
